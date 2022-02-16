@@ -37,7 +37,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr v-for="product in products">
+							<tr v-for="(product, index) in products" :key="index">
 								<td width="150">{{ product.title }}</td>
 								<td width="120">
 									{{ product.origin_price }}
@@ -50,7 +50,7 @@
 									<span v-else>未啟用</span>
 								</td>
 								<td width="120">
-									<button type="button" class="btn btn-primary" v-on:click="detail = product">查看細節</button>
+									<button type="button" class="btn btn-primary" @click="detail = product">查看細節</button>
 								</td>
 							</tr>
 						</tbody>
@@ -61,7 +61,7 @@
 					<h2>單一產品細節</h2>
 					<template v-if="detail.title">
 						<div class="card mb-3">
-							<img v-bind:src="detail.imageUrl" class="card-img-top primary-image rounded" alt="主圖">
+							<img :src="detail.imageUrl" class="card-img-top primary-image rounded" alt="主圖">
 							<div class="card-body">
 								<h5 class="card-title d-flex align-items-center">
 									{{ detail.title }}
@@ -77,7 +77,7 @@
 							</div>
 						</div>
 						<template v-for="moreImage in detail.imagesUrl">
-							<img v-bind:src="moreImage" alt="" class="images rounded m-2">
+							<img :src="moreImage" alt="" class="images rounded m-2">
 						</template>
 					</template>
 					<p v-else class="text-secondary">請選擇一個商品查看</p>
